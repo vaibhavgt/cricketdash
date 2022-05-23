@@ -18,26 +18,26 @@ public class GamePlay {
         List<Team> teams = List.of(team1, team2);
         Match match = new Match("1", teams);
 
-        for(int i = 1; i <= 5; i++){
+        for(int i = 1; i <= 4; i++){
             match.addPlayer(team1, new Player(i, "Player"+i));
         }
 
-        for(int i = 6; i <= 10; i++){
+        for(int i = 5; i <= 8; i++){
             match.addPlayer(team2, new Player(i, "Player"+i));
         }
 
-        GameManager manager = new GameManager(match, 2, 5, team1, team2, new ConsoleScoreBoardPrinter());
+        GameManager manager = new GameManager(match, 2, 4, team1, team2, new ConsoleScoreBoardPrinter());
 
-        String[] balls = {"1", "1", "1", "1", "1", "2", "W", "4", "4", "WD", "W", "1", "6"};
+        String[] balls = {"1", "2", "R0", "1", "R1", "3", "WD", "WD", "6", "1", "W"};
         for(String ballstr: balls){
             Ball ball = manager.convertToBallObject(ballstr);
 
             manager.addBall(ball);
-            System.out.println(ball);
-            System.out.println(manager.getCurrentInningManager().getInning().getBatsmanAtStrike().getName());
+///            System.out.println(ball);
+ //           System.out.println(manager.getCurrentInningManager().getInningsScore());
         }
 
-        String[] secondInningballs = {"4", "6", "W", "W", "1", "1", "6", "1", "W", "W"};
+        String[] secondInningballs = {"1","1", "1", "WD", "WD", "2", "W", "R0", "2", "2", "W"};
         for(String ballstr: secondInningballs){
             Ball ball = manager.convertToBallObject(ballstr);
             manager.addBall(ball);

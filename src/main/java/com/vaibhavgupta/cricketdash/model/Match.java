@@ -14,12 +14,13 @@ public class Match {
     private PlayerPerformanceService playerPerformanceService;
     private MatchType matchType;
 
+
     public Match(String id, List<Team> teams) {
         this.id = id;
         for(Team team: teams){
             teamListHashMap.put(team, new ArrayList<Player>());
         }
-        playerPerformanceService =  PlayerPerformanceService.getInstance();
+        playerPerformanceService =  new PlayerPerformanceService(new HashMap<>());
     }
 
     public PlayerPerformanceService getPlayerPerformanceService() {
@@ -30,7 +31,6 @@ public class Match {
         teamListHashMap.get(team).add(player);
         playerPerformanceService.addPlayer(player);
     }
-
 
     public String getId() {
         return id;
