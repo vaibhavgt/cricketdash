@@ -126,4 +126,9 @@ public class GameManager {
     public InningsManager getCurrentInningManager() {
         return currentInningManager;
     }
+
+    public Winner getWinner() {
+        return winner;
+    }
+
 }
