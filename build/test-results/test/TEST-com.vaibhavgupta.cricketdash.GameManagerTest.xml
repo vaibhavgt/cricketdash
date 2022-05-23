@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.vaibhavgupta.cricketdash.GameManagerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-05-22T20:06:03" hostname="FE172-Dev-IN-MacBook-Pro.local" time="0.011">
+<testsuite name="com.vaibhavgupta.cricketdash.GameManagerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-05-23T03:09:29" hostname="FE172-Dev-IN-MacBook-Pro.local" time="0.012">
   <properties/>
-  <testcase name="testStrikeChangedAfterOneRun()" classname="com.vaibhavgupta.cricketdash.GameManagerTest" time="0.011"/>
+  <testcase name="testStrikeChangedAfterOneRun()" classname="com.vaibhavgupta.cricketdash.GameManagerTest" time="0.012"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -8,11 +8,9 @@ import java.util.List;
 public class Over {
 
     private List<Ball> balls;
-    private PlayerPerformanceService playerPerformanceService;
 
     public Over() {
         this.balls = new ArrayList<>();
-        this.playerPerformanceService = PlayerPerformanceService.getInstance();
     }
 
     public List<Ball> getBalls() {
@@ -21,7 +19,6 @@ public class Over {
 
     public void addBall(Ball ball){
         balls.add(ball);
-        playerPerformanceService.notify();
     }
 
     public boolean isFinished(int maxBalls){

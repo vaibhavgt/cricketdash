@@ -81,27 +81,33 @@ public class GameManagerTest {
         assertEquals(player1, manager.getCurrentInningManager().getInning().getBatsmanAtBowlerEnd());
     }
 
-//    public void testWinByCorrectRuns() throws InvalidBallException, MatchFinishedException {
-//        Player player1 = new Player(1, "Player1");
-//        Player player2 = new Player(2, "Player2");
-//        Player player3 = new Player(3, "Player3");
-//
-//        match.addPlayer(team1, player1);
-//        match.addPlayer(team1, player2);
-//        match.addPlayer(team1, player3);
-//
-//        for(int i = 4; i <= 6; i++){
-//            match.addPlayer(team2, new Player(i, "Player"+i));
-//        }
-//        GameManager manager = new GameManager(match, 2, 3, team1, team2, new ConsoleScoreBoardPrinter());
-//        String[] balls = {"1", "2", "3", "W", "WD", "1", "1", "2", "3", "5", "3", "4", "6"};
-//        for(String ballstr: balls){
-//            Ball ball = manager.convertToBallObject(ballstr);
-//            manager.addBall(ball);
-//        }
-//
-//
-//    }
+    @Test
+    public void testCorrectTeamWins() throws InvalidBallException, MatchFinishedException {
+        for(int i = 1; i <= 5; i++){
+            match.addPlayer(team1, new Player(i, "Player"+i));
+        }
+
+        for(int i = 6; i <= 10; i++){
+            match.addPlayer(team2, new Player(i, "Player"+i));
+        }
+
+        GameManager manager = new GameManager(match, 2, 5, team1, team2, new ConsoleScoreBoardPrinter());
+
+        String[] balls = {"1", "2", "3", "W", "WD", "1", "1", "2", "3", "5", "3", "4", "6"};
+        for(String ballstr: balls){
+            Ball ball = manager.convertToBallObject(ballstr);
+            manager.addBall(ball);
+        }
+
+        String[] secondInningballs = {"6", "6", "6", "6", "W", "6", "W", "W", "1", "0", "1", "1"};
+        for(String ballstr: secondInningballs){
+            Ball ball = manager.convertToBallObject(ballstr);
+            manager.addBall(ball);
+        }
+
+//        assertEquals();
+
+    }
 
 
 

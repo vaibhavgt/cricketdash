@@ -22,18 +22,15 @@ public class Match {
         playerPerformanceService =  PlayerPerformanceService.getInstance();
     }
 
+    public PlayerPerformanceService getPlayerPerformanceService() {
+        return playerPerformanceService;
+    }
+
     public void addPlayer(Team team, Player player){
         teamListHashMap.get(team).add(player);
-        playerPerformanceMap.put(player, new PlayerPerformance());
+        playerPerformanceService.addPlayer(player);
     }
 
-    public Map<Player, PlayerPerformance> getPlayerPerformanceMap() {
-        return playerPerformanceMap;
-    }
-
-    public void setPlayerPerformanceMap(Map<Player, PlayerPerformance> playerPerformanceMap) {
-        this.playerPerformanceMap = playerPerformanceMap;
-    }
 
     public String getId() {
         return id;

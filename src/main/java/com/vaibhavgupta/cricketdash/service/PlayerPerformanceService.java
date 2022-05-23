@@ -7,9 +7,25 @@ import java.util.Map;
 
 public class PlayerPerformanceService {
 
-    private Map<Player, PlayerPerformance> playerPerformanceMap = new HashMap<>();
+    private Map<Player, PlayerPerformance> playerPerformanceMap;
+    private static PlayerPerformanceService playerPerformanceService = new PlayerPerformanceService();
 
-    void updatePlayerPerformance(Ball ball){
+    public static PlayerPerformanceService getInstance(){
+        if(playerPerformanceService == null){
+            playerPerformanceService = new PlayerPerformanceService();
+        }
+        return playerPerformanceService;
+    }
+
+    private PlayerPerformanceService(){
+        playerPerformanceMap = new HashMap<>();
+    }
+
+    public void addPlayer(Player player){
+        playerPerformanceMap.put(player, new PlayerPerformance());
+    }
+    
+    void update(Ball ball){
         Player batsman = ball.getBatsman();
         Player bowler = ball.getBowler();
 
@@ -46,4 +62,17 @@ public class PlayerPerformanceService {
 
     }
 
+    public Map<Player, PlayerPerformance> getPlayerPerformanceMap() {
+        return playerPerformanceMap;
+    }
+
+    public PlayerPerformance getPlayerPerformance(Player player) {
+        return playerPerformanceMap.get(player);
+    }
+
+    public void setBatsmanOnStrike(Player player) {
+        PlayerPerformance perf = playerPerformanceMap.get(player);
+        perf.setOut(false);
+        playerPerformanceMap.put(player, perf);
+    }
 }
