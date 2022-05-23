@@ -40,7 +40,6 @@ public class GamePlay {
         String[] secondInningballs = {"4", "6", "W", "W", "1", "1", "6", "1", "W", "W"};
         for(String ballstr: secondInningballs){
             Ball ball = manager.convertToBallObject(ballstr);
-///            System.out.println(ball);
             manager.addBall(ball);
         }
 

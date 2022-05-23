@@ -15,7 +15,7 @@ public class ConsoleScoreBoardPrinter implements IScoreBoardPrinter{
     public void displayInningsSummary(Map<Player, PlayerPerformance> playerPerformanceMap, InningsManager inningsManager){
         List<Player> battingTeamPlayers = inningsManager.getBattingTeamPlayers();
         System.out.println("ScoreCard For: " + inningsManager.getInning().getBattingTeam().getName());
-        System.out.println("Player \t Score \t Fours \t Sixes \t balls \t OutStatus");
+        System.out.println("Player \t Score \t Fours \t Sixes \t balls");
         for(Player player: battingTeamPlayers){
             if(playerPerformanceMap.containsKey(player)){
                 PlayerPerformance perf =  playerPerformanceMap.get(player);
@@ -36,7 +36,7 @@ public class ConsoleScoreBoardPrinter implements IScoreBoardPrinter{
 
     private String getNameWithNotOutStatus(String name, Boolean isOut){
         if(isOut == null || isOut == true){
-            return name;
+            return name+ " ";
         }else{
             return name+"*" ;
         }

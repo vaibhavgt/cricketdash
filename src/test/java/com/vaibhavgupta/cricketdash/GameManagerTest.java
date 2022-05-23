@@ -3,10 +3,7 @@ package com.vaibhavgupta.cricketdash;
 
 import com.vaibhavgupta.cricketdash.exception.InvalidBallException;
 import com.vaibhavgupta.cricketdash.exception.MatchFinishedException;
-import com.vaibhavgupta.cricketdash.model.Ball;
-import com.vaibhavgupta.cricketdash.model.Match;
-import com.vaibhavgupta.cricketdash.model.Player;
-import com.vaibhavgupta.cricketdash.model.Team;
+import com.vaibhavgupta.cricketdash.model.*;
 import com.vaibhavgupta.cricketdash.service.ConsoleScoreBoardPrinter;
 import com.vaibhavgupta.cricketdash.service.GameManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -93,20 +90,25 @@ public class GameManagerTest {
 
         GameManager manager = new GameManager(match, 2, 5, team1, team2, new ConsoleScoreBoardPrinter());
 
-        String[] balls = {"1", "1", "1", "1", "1", "2", "W", "4", "4", "Wd", "W", "1", "6"};
+        String[] balls = {"1", "1", "1", "1", "1", "2", "W", "4", "4", "WD", "W", "1", "6"};
         for(String ballstr: balls){
             Ball ball = manager.convertToBallObject(ballstr);
+
             manager.addBall(ball);
         }
 
-        String[] secondInningballs = {"6", "6", "6", "6", "W", "6", "W", "W", "1", "0", "1", "1"};
+        String[] secondInningballs = {"4", "6", "W", "W", "1", "1", "6", "1", "W", "W"};
         for(String ballstr: secondInningballs){
             Ball ball = manager.convertToBallObject(ballstr);
             manager.addBall(ball);
         }
 
-//        assertEquals();
+        Winner winner = manager.getWinner();
+        Team winningTeam = winner.getTeam();
+        int winMargin = winner.getWinByRuns();
 
+        assertEquals(team1, winningTeam);
+        assertEquals(4, winMargin);
     }
 
 
