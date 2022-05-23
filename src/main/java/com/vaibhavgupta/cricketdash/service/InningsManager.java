@@ -144,12 +144,11 @@ public class InningsManager {
     Player nextBatsman(){
         Player nextBatsman = null;
         for(Player player: match.getTeamListHashMap().get(getInning().getBattingTeam())){
-            PlayerPerformance perf = match.getPlayerPerformanceMap().get(player);
+            PlayerPerformance perf = match.getPlayerPerformanceService().getPlayerPerformance(player);
 
             if(perf.isOut() == null){
-                perf.setOut(false);
                 nextBatsman = player;
-                match.getPlayerPerformanceMap().put(player, perf);
+                notifyBatsmanOnStrike(player);
                 break;
             }
         }
@@ -165,12 +164,24 @@ public class InningsManager {
     }
 
     public void addBall(Ball ball) {
+        notifyBallUpdate(ball);
+
         if(ball.getBallType() == BallType.WICKET){
             inning.setBatsmanAtStrike(nextBatsman());
         }
-        if(AppConstants.strikeChangeRuns.contains(ball.getRuns())){
+        if(ball.getBallType() == BallType.NORMAL && AppConstants.strikeChangeRuns.contains(ball.getRuns())){
             switchStrike();
         }
         getCurrentOver().addBall(ball);
     }
+
+    void notifyBatsmanOnStrike(Player player){
+        match.getPlayerPerformanceService().setBatsmanOnStrike(player);
+    }
+
+    void notifyBallUpdate(Ball ball){
+        match.getPlayerPerformanceService().update(ball);
+    }
+
+
 }

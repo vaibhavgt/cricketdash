@@ -1,5 +1,7 @@
 package com.vaibhavgupta.cricketdash.model;
 
+import com.vaibhavgupta.cricketdash.service.PlayerPerformanceService;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +11,7 @@ public class Match {
 
     private final String id;
     private Map<Team, List<Player>> teamListHashMap = new HashMap<>();
-    private Map<Player, PlayerPerformance> playerPerformanceMap = new HashMap<>();
+    private PlayerPerformanceService playerPerformanceService;
     private MatchType matchType;
 
     public Match(String id, List<Team> teams) {
@@ -17,20 +19,18 @@ public class Match {
         for(Team team: teams){
             teamListHashMap.put(team, new ArrayList<Player>());
         }
+        playerPerformanceService =  PlayerPerformanceService.getInstance();
+    }
+
+    public PlayerPerformanceService getPlayerPerformanceService() {
+        return playerPerformanceService;
     }
 
     public void addPlayer(Team team, Player player){
         teamListHashMap.get(team).add(player);
-        playerPerformanceMap.put(player, new PlayerPerformance());
+        playerPerformanceService.addPlayer(player);
     }
 
-    public Map<Player, PlayerPerformance> getPlayerPerformanceMap() {
-        return playerPerformanceMap;
-    }
-
-    public void setPlayerPerformanceMap(Map<Player, PlayerPerformance> playerPerformanceMap) {
-        this.playerPerformanceMap = playerPerformanceMap;
-    }
 
     public String getId() {
         return id;

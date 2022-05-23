@@ -1,7 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.vaibhavgupta.cricketdash.GameManagerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-05-22T20:06:03" hostname="FE172-Dev-IN-MacBook-Pro.local" time="0.011">
+<testsuite name="com.vaibhavgupta.cricketdash.GameManagerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-05-23T05:01:23" hostname="FE172-Dev-IN-MacBook-Pro.local" time="0.027">
   <properties/>
-  <testcase name="testStrikeChangedAfterOneRun()" classname="com.vaibhavgupta.cricketdash.GameManagerTest" time="0.011"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="testCorrectTeamWins()" classname="com.vaibhavgupta.cricketdash.GameManagerTest" time="0.027"/>
+  <system-out><![CDATA[ScoreCard For: Team1
+Player 	 Score 	 Fours 	 Sixes 	 balls
+Player1*	3	0	0	3	
+Player2*	4	0	0	3	
+Player3 	0	0	0	0	
+Player4 	0	0	0	0	
+Player5 	0	0	0	0	
+TotalRuns: 7
+TotalWickets: 0
+TotalExtras: 0
+Overs: 1
+---------------------------
+ScoreCard For: Team1
+Player 	 Score 	 Fours 	 Sixes 	 balls
+Player1 	3	0	0	4	
+Player2*	10	0	1	4	
+Player3 	8	2	0	3	
+Player4*	1	0	0	1	
+Player5 	0	0	0	0	
+TotalRuns: 23
+TotalWickets: 2
+TotalExtras: 1
+Overs: 2
+---------------------------
+ScoreCard For: Team2
+Player 	 Score 	 Fours 	 Sixes 	 balls
+Player6 	10	1	1	3	
+Player7*	1	0	0	1	
+Player8 	0	0	0	1	
+Player9*	1	0	0	1	
+Player10 	0	0	0	0	
+TotalRuns: 12
+TotalWickets: 2
+TotalExtras: 0
+Overs: 1
+---------------------------
+ScoreCard For: Team2
+Player 	 Score 	 Fours 	 Sixes 	 balls
+Player6 	10	1	1	3	
+Player7*	8	0	1	3	
+Player8 	0	0	0	1	
+Player9 	1	0	0	2	
+Player10 	0	0	0	1	
+TotalRuns: 19
+TotalWickets: 4
+TotalExtras: 0
+Overs: 2
+---------------------------
+Team1 won the match by 4 runs
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

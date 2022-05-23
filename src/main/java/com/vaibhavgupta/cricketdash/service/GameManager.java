@@ -112,7 +112,14 @@ public class GameManager {
     }
 
     public void printScoreCard(){
-        printer.displayInningsSummary(currentInningManager);
+        printer.displayInningsSummary(match.getPlayerPerformanceService().getPlayerPerformanceMap(), currentInningManager);
+//        System.out.println("===================");
+//        printScoreCardFromLog();
+//        System.out.println("===================");
+    }
+
+    public void printScoreCardFromLog(){
+        printer.displayInningsSummaryFromBallLog(currentInningManager);
     }
 
     public void printMatchResults() {
@@ -126,4 +133,9 @@ public class GameManager {
     public InningsManager getCurrentInningManager() {
         return currentInningManager;
     }
+
+    public Winner getWinner() {
+        return winner;
+    }
+
 }
