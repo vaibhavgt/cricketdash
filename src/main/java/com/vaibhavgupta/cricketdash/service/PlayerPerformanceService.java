@@ -8,36 +8,32 @@ import java.util.Map;
 public class PlayerPerformanceService {
 
     private Map<Player, PlayerPerformance> playerPerformanceMap;
-    private static PlayerPerformanceService playerPerformanceService = new PlayerPerformanceService();
 
-    public static PlayerPerformanceService getInstance(){
-        if(playerPerformanceService == null){
-            playerPerformanceService = new PlayerPerformanceService();
-        }
-        return playerPerformanceService;
-    }
-
-    private PlayerPerformanceService(){
-        playerPerformanceMap = new HashMap<>();
+    public PlayerPerformanceService(Map<Player,PlayerPerformance> playerPerformanceMap){
+        this.playerPerformanceMap = playerPerformanceMap;
     }
 
     public void addPlayer(Player player){
         playerPerformanceMap.put(player, new PlayerPerformance());
     }
     
-    void update(Ball ball){
-        Player batsman = ball.getBatsman();
-        Player bowler = ball.getBowler();
+    void update(Ball ball, Player batsman, Player batsmanAtBowlerEnd){
+//        Player bowler = ball.getBowler();
 
         if(!playerPerformanceMap.containsKey(batsman)){
             playerPerformanceMap.put(batsman, new PlayerPerformance());
         }
 
-        if(!playerPerformanceMap.containsKey(bowler)){
-            playerPerformanceMap.put(bowler, new PlayerPerformance());
+        if(!playerPerformanceMap.containsKey(batsman)){
+            playerPerformanceMap.put(batsmanAtBowlerEnd, new PlayerPerformance());
         }
 
+//        if(!playerPerformanceMap.containsKey(bowler)){
+//            playerPerformanceMap.put(bowler, new PlayerPerformance());
+//        }
+
         PlayerPerformance batsmanPerformance = playerPerformanceMap.get(batsman);
+        PlayerPerformance batsmanAtBowlerEndPerformance = playerPerformanceMap.get(batsmanAtBowlerEnd);
         batsmanPerformance.setOut(false);
 
         if(ball.getBallType() == BallType.NORMAL || ball.getBallType() == BallType.NO_BALL){
@@ -58,6 +54,16 @@ public class PlayerPerformanceService {
         if(ball.getBallType() == BallType.WICKET){
             batsmanPerformance.setOut(true);
             batsmanPerformance.addBalls(1);
+        }
+
+        if(ball.getBallType() == BallType.RUN_OUT){
+            if(ball.getRuns() == 1 || ball.getRuns() ==3 ){
+                batsmanPerformance.addScore(ball.getRuns());
+                batsmanPerformance.addBalls(1);
+                batsmanPerformance.setOut(true);
+            }else{
+               batsmanAtBowlerEndPerformance.setOut(true);
+            }
         }
 
     }

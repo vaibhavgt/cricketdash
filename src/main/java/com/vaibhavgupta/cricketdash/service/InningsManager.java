@@ -172,6 +172,16 @@ public class InningsManager {
         if(ball.getBallType() == BallType.NORMAL && AppConstants.strikeChangeRuns.contains(ball.getRuns())){
             switchStrike();
         }
+
+        if(ball.getBallType() == BallType.RUN_OUT){
+            if((ball.getRuns() % 2) != 0){
+                switchStrike();
+                inning.setBatsmanAtStrike(nextBatsman());
+            }else{
+                inning.setBatsmanAtStrike(nextBatsman());
+            }
+        }
+
         getCurrentOver().addBall(ball);
     }
 
@@ -180,7 +190,7 @@ public class InningsManager {
     }
 
     void notifyBallUpdate(Ball ball){
-        match.getPlayerPerformanceService().update(ball);
+        match.getPlayerPerformanceService().update(ball, inning.getBatsmanAtStrike(), inning.getBatsmanAtBowlerEnd());
     }
 
 

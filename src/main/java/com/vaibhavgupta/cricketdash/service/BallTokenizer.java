@@ -25,9 +25,17 @@ public class BallTokenizer {
         ballTypes = new HashMap<>();
         ballTypes.put("W", BallType.WICKET);
         ballTypes.put("WD", BallType.WIDE);
+        ballTypes.put("R0", BallType.RUN_OUT);
+        ballTypes.put("R1", BallType.RUN_OUT);
+        ballTypes.put("R2", BallType.RUN_OUT);
+        ballTypes.put("R3", BallType.RUN_OUT);
 
         ballTypeRuns = new HashMap<>();
         ballTypeRuns.put("WD", 1);
+        ballTypeRuns.put("R0", 0);
+        ballTypeRuns.put("R1", 1);
+        ballTypeRuns.put("R2", 2);
+        ballTypeRuns.put("R3", 3);
     }
 
     public BallTokenizer(String source, Player batsman, Player bowler) throws InvalidBallException {
@@ -64,6 +72,7 @@ public class BallTokenizer {
            throw new InvalidBallException();
        }
     }
+
 
     private RunType getRunType(){
         if(isDigit(source)){

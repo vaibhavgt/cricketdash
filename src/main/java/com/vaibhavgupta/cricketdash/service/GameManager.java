@@ -50,6 +50,10 @@ public class GameManager {
             return;
         }
 
+        if(handleAllOut()){
+            return;
+        }
+
         Over currentOver = currentInningManager.getCurrentOver();
         if(currentOver.isFinished()){
             handleOverFinish();
@@ -65,7 +69,7 @@ public class GameManager {
 
              int prevScore =  previousInningManager.getInningsScore();
              int currScore =  currentInningManager.getInningsScore();
-            Over currentOver = currentInningManager.getCurrentOver();
+             Over currentOver = currentInningManager.getCurrentOver();
 
             int currWickets =  currentInningManager.getWickets();
              if(currScore > prevScore){
@@ -89,9 +93,18 @@ public class GameManager {
         return ball;
     }
 
+    private boolean handleAllOut(){
+        if (currentInningManager.getWickets() == playersPerTeam-1 && inningManagerList.size() < 2){
+            printScoreCard();
+            setUpNewInning(currentBowlingTeam(), currentBattingTeam());
+            return true;
+        }
+        return false;
+    }
+
     private void handleOverFinish(){
         printScoreCard();
-        if((currentInningManager.getInning().getOvers().size() == maxOverPerInning) || (currentInningManager.getWickets() == playersPerTeam-1) && inningManagerList.size() < 2){
+        if((currentInningManager.getInning().getOvers().size() == maxOverPerInning) && inningManagerList.size() < 2){
             setUpNewInning(currentBowlingTeam(), currentBattingTeam());
             return;
         }
