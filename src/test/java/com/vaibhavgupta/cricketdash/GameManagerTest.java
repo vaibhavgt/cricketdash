@@ -93,7 +93,7 @@ public class GameManagerTest {
 
         GameManager manager = new GameManager(match, 2, 5, team1, team2, new ConsoleScoreBoardPrinter());
 
-        String[] balls = {"1", "2", "3", "W", "WD", "1", "1", "2", "3", "5", "3", "4", "6"};
+        String[] balls = {"1", "1", "1", "1", "1", "2", "W", "4", "4", "Wd", "W", "1", "6"};
         for(String ballstr: balls){
             Ball ball = manager.convertToBallObject(ballstr);
             manager.addBall(ball);

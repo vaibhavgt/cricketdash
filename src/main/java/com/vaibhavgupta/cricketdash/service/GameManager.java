@@ -113,9 +113,9 @@ public class GameManager {
 
     public void printScoreCard(){
         printer.displayInningsSummary(match.getPlayerPerformanceService().getPlayerPerformanceMap(), currentInningManager);
-//        System.out.println("===================");
-//        printScoreCardFromLog();
-//        System.out.println("===================");
+        System.out.println("===================");
+        printScoreCardFromLog();
+        System.out.println("===================");
     }
 
     public void printScoreCardFromLog(){

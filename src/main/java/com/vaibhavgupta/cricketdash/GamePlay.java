@@ -28,14 +28,16 @@ public class GamePlay {
 
         GameManager manager = new GameManager(match, 2, 5, team1, team2, new ConsoleScoreBoardPrinter());
 
-        String[] balls = {"1", "2", "3", "W", "WD", "1", "1", "2", "3", "5", "3", "4", "6"};
+        String[] balls = {"1", "1", "1", "1", "1", "2", "W", "4", "4", "WD", "W", "1", "6"};
         for(String ballstr: balls){
             Ball ball = manager.convertToBallObject(ballstr);
-///            System.out.println(ball);
+
             manager.addBall(ball);
+            System.out.println(ball);
+            System.out.println(manager.getCurrentInningManager().getInning().getBatsmanAtStrike().getName());
         }
 
-        String[] secondInningballs = {"6", "6", "6", "6", "W", "6", "W", "W", "1", "0", "1", "0"};
+        String[] secondInningballs = {"4", "6", "W", "W", "1", "1", "6", "1", "W", "W"};
         for(String ballstr: secondInningballs){
             Ball ball = manager.convertToBallObject(ballstr);
 ///            System.out.println(ball);

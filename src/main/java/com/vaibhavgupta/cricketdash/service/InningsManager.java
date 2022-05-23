@@ -169,7 +169,7 @@ public class InningsManager {
         if(ball.getBallType() == BallType.WICKET){
             inning.setBatsmanAtStrike(nextBatsman());
         }
-        if(AppConstants.strikeChangeRuns.contains(ball.getRuns())){
+        if(ball.getBallType() == BallType.NORMAL && AppConstants.strikeChangeRuns.contains(ball.getRuns())){
             switchStrike();
         }
         getCurrentOver().addBall(ball);
